@@ -1,10 +1,12 @@
 cargo new hello-world
 
-cargo install cargo-wasi
+rustup target add wasm32-wasi
 
-cargo wasi run
+cargo build --target wasm32-wasi
+
+/root/.wasmtime/bin/wasmtime target/wasm32-wasi/debug/wasmtime_hello.wasm
 
 
 
 
-docker run -v "$PWD":/usr/src/myapp -w /usr/src/myapp --build . -it
+docker-compose run builder
